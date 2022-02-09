@@ -1,0 +1,43 @@
+body{
+    display: flex;
+    justify-content: center;
+}
+#calculator{
+    gap: 2px;
+    background-color: black;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px;
+    border-radius: 10px;
+}
+#gridcontainer{
+    display: grid;
+    grid-template-columns: repeat(4, 80px);
+    grid-template-rows: minmax(80px, auto) repeat(4, 80px);
+    gap: 2px;
+
+}
+
+#display{
+    font-size: 36px;
+    width: 328px;
+    text-align: right;
+}
+
+#zero{
+    grid-column: span 2;
+}
+button{
+    border-radius: 40px;
+    color: white;
+    background-color: #333333;
+    border: 0px;
+    font-size: 24px;
+}
+#minus, #plus, #divide, #multiply, #equal{
+    background-color: orange;
+}
+#ac, #plusminus, #percent{
+    background-color: lightgrey;
+    color: black;
+}
