@@ -32,6 +32,7 @@ numbers.forEach((number) => {
         clickedOperator ="";
         clickedEqual = false;
         equalTempNum = "";
+        if (display.innerText.length < 14){
         if (number.value=="0"){
             if (display.innerText=="0"){
                 display.innerText== "0";
@@ -42,6 +43,7 @@ numbers.forEach((number) => {
         }else{
             screen += number.value;
             display.innerText = screen;
+        }
     }
     })
 })
@@ -102,22 +104,31 @@ acButton.addEventListener('click', ()=>{
 // +/- button
 const plusminusButton = document.querySelector("#plusminus");
 plusminusButton.addEventListener('click', ()=> {
-    let num = parseFloat(display.innerText)
-    display.innerText = (num*-1).toString();
-    clickedEqual = false;
-    equalTempNum = "";
+    if (display.innerText.length < 14){
+        let num = parseFloat(display.innerText)
+        screen = (num*-1).toString();
+        display.innerText = screen;
+        clickedEqual = false;
+        equalTempNum = "";
+    }
 })
 
 //percent button
 const percentButton = document.querySelector("#percent");
 percentButton.addEventListener('click', ()=>{
-    clickedEqual = false;
-    equalTempNum = "";
-    let num = parseFloat(display.innerText);
-    result = num/100
-    display.innerText = result.toString();
-    if(display.innerText.length > 9) {
-        display.innerText = display.innerText.substring(0, 9);
+    if (display.innerText.length < 14){
+        clickedEqual = false;
+        equalTempNum = "";
+        let num = parseFloat(display.innerText);
+        result = num/100
+        let resultRound = roundAccurately(result,7);
+        display.innerText = resultRound.toString();
+        operandOne = "0";
+        operandTwo = "0";
+        operator = "+";
+        screen =  "";
+        result = 0;
+
     }
 })
 
@@ -165,15 +176,17 @@ equalButton.addEventListener('click', () => {
 //decimal button
 const decimalButton = document.querySelector("#decimal");
 decimalButton.addEventListener('click', () => {
-    clickedEqual = false;
-    equalTempNum = "";
-    if (!display.innerText.includes(".")){
-        if (screen == ""){
-            screen = "0.";
-        }else {
-            screen += ".";
+    if (display.innerText.length < 14){
+        clickedEqual = false;
+        equalTempNum = "";
+        if (!display.innerText.includes(".")){
+            if (screen == ""){
+                screen = "0.";
+            }else {
+                screen += ".";
+            }
+            display.innerText = screen;
         }
-        display.innerText = screen;
     }
 })
 //keyboard
@@ -193,3 +206,5 @@ display.addEventListener("click", () => {
         }
 
 })
+
+
